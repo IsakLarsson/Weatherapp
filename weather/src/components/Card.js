@@ -29,7 +29,7 @@ export default class Card extends Component {
     });
   }
 
-  render() {
+  render(props) {
     let condition = this.capitalizeFirstLetter(this.state.condition);
     return (
       <div className="card">
