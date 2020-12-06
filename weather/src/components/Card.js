@@ -6,6 +6,12 @@ export default class Card extends Component {
     weatherData: "",
     temp: null,
     loading: true,
+    condition: "",
+    feelsLike: "",
+  };
+
+  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   async componentDidMount() {
@@ -16,21 +22,23 @@ export default class Card extends Component {
     console.log(data);
     this.setState({
       weatherData: data,
-      temp: data.main.temp,
       loading: false,
+      condition: data.weather[0].description,
+      temp: Math.round(data.main.temp),
+      feelsLike: Math.round(data.main.feels_like),
     });
   }
 
   render() {
+    let condition = this.capitalizeFirstLetter(this.state.condition);
     return (
       <div className="card">
-        <div className="upperCard">
-          <img src={Drizzle} alt="weathericon" />
-        </div>
-        <div className="lowerCard">
-          <h1>{this.state.weatherData.name}</h1>
-          <h1>{this.state.temp}°C</h1>
-        </div>
+        <img src={Drizzle} alt="weathericon" />
+
+        <h1>{this.state.weatherData.name}</h1>
+        <p>
+          {condition} {this.state.temp}°C, feels like {this.state.feelsLike}°C
+        </p>
       </div>
     );
   }
