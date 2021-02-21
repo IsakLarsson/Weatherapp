@@ -1,8 +1,9 @@
 import "./App.css";
+import "./components/Card.css";
 import Card from "./components/Card.jsx";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const useStyles = makeStyles({
   textField: {
@@ -39,7 +40,6 @@ function App() {
         console.log("error 404");
       } else {
         setCityData(data);
-        console.log(cityData);
       }
     } catch (error) {
       console.log(error);
@@ -61,20 +61,6 @@ function App() {
     let fieldValue = event.target.value;
     setCityName(fieldValue);
   };
-
-  useEffect(() => {
-    /* const listener = (event) => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        console.log("Enter key was pressed");
-        console.log("current city name: ", cityName);
-
-        let data = getCityData();
-        
-        console.log("APP.js city state: ", cityData);
-      }
-    }; */
-    return () => {};
-  });
 
   return (
     <div className="App">
