@@ -13,15 +13,6 @@ body {
   align-items: center;
 }
 
-.card {
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #1a1a1a;
-  width: 500px;
-}
-
 h1 {
   color: #fff;
   font-weight: 300;
@@ -35,12 +26,4 @@ h2 {
 
 h3 {
   font-weight: 300;
-}
-
-.card p {
-  font-size: larger;
-}
-
-.card img {
-  max-width: 300px;
 }

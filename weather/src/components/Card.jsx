@@ -5,6 +5,7 @@ import ClearSkyIcon from "../icons/clear-day.svg";
 import CloudyIcon from "../icons/cloudy.svg";
 import RainIcon from "../icons/rain.svg";
 import ThunderIcon from "../icons/thunderstorm.svg";
+import MistIcon from "../icons/drizzle.svg";
 
 const Card = (props) => {
   const [cityData, setCityData] = useState();
@@ -16,18 +17,28 @@ const Card = (props) => {
 
   const WeatherIcon = () => {
     let weatherCode = cityData.weather[0].id;
-
-    let firstDigit = String(weatherCode).charAt(0);
-    console.log(firstDigit);
+    let weatherCodeString = String(weatherCode);
+    let firstDigit = weatherCodeString.charAt(0);
+    let thirdDigit = weatherCodeString.charAt(2);
     switch (firstDigit) {
-      case 6:
-        console.log("yeet");
+      case "2":
+        return <img src={ThunderIcon} />;
+      case "3":
+        return <img src={Drizzle} />;
+      case "5":
+        return <img src={RainIcon} />;
+      case "6":
         return <img src={SnowIcon} />;
-      case "clear sky":
-        return <img src={ClearSkyIcon} />;
+      case "7":
+        return <img src={MistIcon} />;
+      case "8":
+        if (thirdDigit === "0") {
+          return <img src={ClearSkyIcon} />;
+        } else {
+          return <img src={CloudyIcon} />;
+        }
       default:
         return <></>;
-        break;
     }
   };
 
@@ -38,13 +49,16 @@ const Card = (props) => {
           <>
             <WeatherIcon />
             <h1>{cityData.name}</h1>
-            <h2>{Math.round(cityData.main.temp)}°C</h2>
+
+            <h2>
+              {Math.round(cityData.main.temp)}°C,{" "}
+              {cityData.weather[0].description}
+            </h2>
             <h3>Feels like: {Math.round(cityData.main.feels_like)}°C</h3>
           </>
         )}
         {!cityData && (
           <>
-            {" "}
             <h1>Hello, please enter a city</h1>
           </>
         )}

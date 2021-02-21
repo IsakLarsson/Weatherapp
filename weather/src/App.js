@@ -9,7 +9,8 @@ const useStyles = makeStyles({
   textField: {
     position: "absolute",
     bottom: "100px",
-    width: "400px",
+    width: "70%",
+    maxWidth: "400px",
     paddingBottom: 0,
     marginTop: 0,
     fontWeight: 500,
