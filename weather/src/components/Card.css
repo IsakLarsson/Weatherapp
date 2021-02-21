@@ -1,5 +1,6 @@
 h1 {
   color: #fff;
+  text-align: center;
 }
 
 .card {
@@ -18,3 +19,9 @@ h1 {
 .card img {
   max-width: 300px;
 }
+
+/* @media screen and (max-width: 425px) {
+  h1 {
+    font-size: 1.7em;
+  }
+} ; */

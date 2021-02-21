@@ -5,7 +5,7 @@ import ClearSkyIcon from "../icons/clear-day.svg";
 import CloudyIcon from "../icons/cloudy.svg";
 import RainIcon from "../icons/rain.svg";
 import ThunderIcon from "../icons/thunderstorm.svg";
-import MistIcon from "../icons/drizzle.svg";
+import MistIcon from "../icons/mist.svg";
 
 const Card = (props) => {
   const [cityData, setCityData] = useState();
@@ -43,36 +43,25 @@ const Card = (props) => {
   };
 
   return (
-    <div>
-      <div className="card">
-        {cityData && (
-          <>
-            <WeatherIcon />
-            <h1>{cityData.name}</h1>
+    <div className="card">
+      {cityData && (
+        <>
+          <WeatherIcon />
+          <h1>{cityData.name}</h1>
 
-            <h2>
-              {Math.round(cityData.main.temp)}°C,{" "}
-              {cityData.weather[0].description}
-            </h2>
-            <h3>Feels like: {Math.round(cityData.main.feels_like)}°C</h3>
-          </>
-        )}
-        {!cityData && (
-          <>
-            <h1>Hello, please enter a city</h1>
-          </>
-        )}
-      </div>
+          <h2>
+            {Math.round(cityData.main.temp)}°C,{" "}
+            {cityData.weather[0].description}
+          </h2>
+          <h3>Feels like: {Math.round(cityData.main.feels_like)}°C</h3>
+        </>
+      )}
+      {!cityData && (
+        <>
+          <h1>Hello, please enter a city</h1>
+        </>
+      )}
     </div>
-
-    /* <div className="card">
-      <img src={Drizzle} alt="weathericon" />
-
-      <h1>{this.state.weatherData.name}</h1>
-      <p>
-        {condition} {this.state.temp}°C, feels like {this.state.feelsLike}°C
-      </p>
-    </div> */
   );
 };
 

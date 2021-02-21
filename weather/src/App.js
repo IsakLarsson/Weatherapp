@@ -7,15 +7,14 @@ import { useState } from "react";
 
 const useStyles = makeStyles({
   textField: {
-    position: "absolute",
-    bottom: "100px",
+    alignSelf: "center",
     width: "70%",
     maxWidth: "400px",
-    paddingBottom: 0,
-    marginTop: 0,
-    fontWeight: 500,
     fontSize: "2rem",
     backgroundColor: "#F2ECFF",
+    marginTop: "30px",
+    borderRadius: "5px",
+    textAlign: "center",
   },
   label: {
     color: "#000",
@@ -37,6 +36,11 @@ function App() {
         `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=7c8a35514e7190836d0122f1a2248d2e`
       );
       const data = await response.json();
+      const multiple = await fetch(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&appid=7c8a35514e7190836d0122f1a2248d2e`
+      );
+      const multipleData = await multiple.json();
+      console.log("forecast: ", multipleData);
       if (data.cod === "404") {
         console.log("error 404");
       } else {

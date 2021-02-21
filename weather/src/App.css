@@ -5,12 +5,17 @@ body {
 .App {
   background-color: #1a1a1a;
   font-family: "Roboto", sans-serif;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+}
+
+.input-field {
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 h1 {
