@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import "../components/ForecastCard.css";
 import Drizzle from "../icons/partly-cloudy-day-drizzle.svg";
 import SnowIcon from "../icons/snow.svg";
 import ClearSkyIcon from "../icons/clear-day.svg";
@@ -6,18 +7,14 @@ import CloudyIcon from "../icons/cloudy.svg";
 import RainIcon from "../icons/rain.svg";
 import ThunderIcon from "../icons/thunderstorm.svg";
 import MistIcon from "../icons/mist.svg";
-import "../components/Card.css";
+import NightIcion from "../icons/night.svg";
+import DayIcon from "../icons/sun.svg";
 
-const Card = (props) => {
-  const [cityData, setCityData] = useState();
-
-  useEffect(() => {
-    setCityData(props.cityData);
-    return () => {};
-  }, [props.cityData]);
-
+function ForecastCard(props) {
+  /* This could really be its own component so that i wouldnt need to
+  write it twice... oh well, wasn't planning on making forecasts */
   const WeatherIcon = () => {
-    let weatherCode = cityData.weather[0].id;
+    let weatherCode = props.data.weather[0].id;
     let weatherCodeString = String(weatherCode);
     let firstDigit = weatherCodeString.charAt(0);
     let thirdDigit = weatherCodeString.charAt(2);
@@ -44,26 +41,20 @@ const Card = (props) => {
   };
 
   return (
-    <div className="card">
-      {cityData && (
-        <>
-          <WeatherIcon />
-          <h1>{cityData.name}</h1>
-
-          <h2>
-            {Math.round(cityData.main.temp)}°C,{" "}
-            {cityData.weather[0].description}
-          </h2>
-          <h3>Feels like: {Math.round(cityData.main.feels_like)}°C</h3>
-        </>
-      )}
-      {!cityData && (
-        <>
-          <h1>Please enter a city</h1>
-        </>
-      )}
+    <div className="forecast-card">
+      <div className="left">
+        <WeatherIcon />
+      </div>
+      <div className="right">
+        <h1>
+          Day:{props.index + 1} Max:{props.data.temp.max}
+        </h1>
+        <h1>Min: {props.data.temp.min}</h1>
+        <h1>Desc: {props.data.weather[0].description}</h1>
+        <p>fontweight</p>
+      </div>
     </div>
   );
-};
+}
 
-export default Card;
+export default ForecastCard;
