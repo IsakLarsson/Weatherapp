@@ -32,8 +32,9 @@ function App() {
 
   const valueRef = useRef("");
 
+  const today = new Date().getDay() + 1;
+
   async function getCityData() {
-    console.log("Current text:", valueRef.current.value);
     try {
       let forecastArray = [];
       const response = await fetch(
@@ -44,12 +45,10 @@ function App() {
         `https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&appid=7c8a35514e7190836d0122f1a2248d2e`
       );
       const multipleData = await multiple.json();
-      console.log("forecast: ", multipleData);
       multipleData.daily.forEach((day) => {
         forecastArray.push(day);
       });
 
-      console.log(forecastArray);
       if (data.cod === "404") {
         console.log("error 404");
       } else {
@@ -97,10 +96,19 @@ function App() {
         inputProps={{ className: classes.input }}
         InputLabelProps={{ className: classes.label }}
       />
-      <section>
+      <section className="forecasts">
+        {forecastData && <h2>Forecast</h2>}
+
         {forecastData &&
           forecastData.map((day, index) => {
-            return <ForecastCard data={day} key={index} index={index} />;
+            return (
+              <ForecastCard
+                data={day}
+                key={index}
+                index={index}
+                day={today + index}
+              />
+            );
           })}
       </section>
     </div>

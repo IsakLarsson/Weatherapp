@@ -27,8 +27,15 @@ h1 {
 
 h2 {
   font-weight: 300;
+  color: #fff;
 }
 
 h3 {
   font-weight: 300;
+  color: #fff;
+}
+
+.forecasts {
+  text-align: center;
+  margin-top: 50px;
 }

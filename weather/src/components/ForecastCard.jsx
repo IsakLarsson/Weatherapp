@@ -7,7 +7,7 @@ import CloudyIcon from "../icons/cloudy.svg";
 import RainIcon from "../icons/rain.svg";
 import ThunderIcon from "../icons/thunderstorm.svg";
 import MistIcon from "../icons/mist.svg";
-import NightIcion from "../icons/night.svg";
+import NightIcon from "../icons/night.svg";
 import DayIcon from "../icons/sun.svg";
 
 function ForecastCard(props) {
@@ -40,18 +40,38 @@ function ForecastCard(props) {
     }
   };
 
+  const getDayInText = () => {
+    let weekdays = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    let dayIndex = props.day;
+    if (dayIndex > weekdays.length - 1) {
+      dayIndex = dayIndex - weekdays.length;
+    }
+    return weekdays[dayIndex];
+  };
+
+  getDayInText();
   return (
     <div className="forecast-card">
       <div className="left">
         <WeatherIcon />
+        <h3>{props.data.weather[0].description}</h3>
       </div>
       <div className="right">
-        <h1>
-          Day:{props.index + 1} Max:{props.data.temp.max}
-        </h1>
-        <h1>Min: {props.data.temp.min}</h1>
-        <h1>Desc: {props.data.weather[0].description}</h1>
-        <p>fontweight</p>
+        <h1>{getDayInText()}</h1>
+        <div className="day-night">
+          <img src={NightIcon} alt="Night" />
+          <p>{Math.round(props.data.temp.night)} °C</p>
+          <img src={DayIcon} alt="Day" />
+          <p>{Math.round(props.data.temp.day)} °C</p>
+        </div>
       </div>
     </div>
   );
