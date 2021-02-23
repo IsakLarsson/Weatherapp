@@ -6,6 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useRef, useState } from "react";
 import ForecastCard from "./components/ForecastCard.jsx";
 
+require("dotenv").config();
+
 const useStyles = makeStyles({
   textField: {
     alignSelf: "center",
@@ -37,12 +39,13 @@ function App() {
   async function getCityData() {
     try {
       let forecastArray = [];
+      let API_KEY = process.env.REACT_APP_API_KEY;
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${valueRef.current.value}&units=metric&appid=7c8a35514e7190836d0122f1a2248d2e`
+        `https://api.openweathermap.org/data/2.5/weather?q=${valueRef.current.value}&units=metric&appid=${API_KEY}`
       );
       const data = await response.json();
       const multiple = await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&appid=7c8a35514e7190836d0122f1a2248d2e`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&appid=${API_KEY}`
       );
       const multipleData = await multiple.json();
       multipleData.daily.forEach((day) => {
