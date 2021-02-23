@@ -8,6 +8,8 @@ import ThunderIcon from "../icons/thunderstorm.svg";
 import MistIcon from "../icons/mist.svg";
 import "../components/Card.css";
 
+const { getName } = require("country-list");
+
 const Card = (props) => {
   const [cityData, setCityData] = useState();
 
@@ -48,7 +50,9 @@ const Card = (props) => {
       {cityData && (
         <>
           <WeatherIcon />
-          <h1>{cityData.name}</h1>
+          <h1>
+            {cityData.name}, {getName(cityData.sys.country)}
+          </h1>
 
           <h2>
             {Math.round(cityData.main.temp)}°C,{" "}
